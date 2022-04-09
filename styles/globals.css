@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.blog-post-content h1 {
+    @apply text-red-500 mb-5;
+}
+.blog-post-content p {
+    @apply mb-1 text-gray-500;
+}
+
+.blog-post-content ul {
+    @apply pl-10 list-disc;
+}
+
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+::-webkit-scrollbar-track {
+    background-color: transparent !important;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px !important;
+    background-color: rgba(0, 0, 0, 0.35) !important;
+}
+::-webkit-scrollbar-button {
+    width: 0 !important;
+    height: 0 !important;
+}
