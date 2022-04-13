@@ -9,6 +9,7 @@ import useMutation from "@libs/client/useMutation";
 import { cls } from "@libs/client/utils";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import moment from 'moment';
 
 interface AnswerWithUser extends Answer {
     user: User;
@@ -161,7 +162,9 @@ const CommunityPostDetail: NextPage = () => {
                                     {answer.user.name}
                                 </span>
                                 <span className="text-xs text-gray-500 block ">
-                                    {answer.createdAt}
+                                    {moment(answer.createdAt).format(
+                                        'YYYY-MM-DD HH:mm'
+                                    )}
                                 </span>
                                 <p className="text-gray-700 mt-2">
                                     {answer.answer}
