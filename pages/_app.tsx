@@ -16,16 +16,16 @@ function MyApp({ Component, pageProps }: AppProps) {
             <div className="w-full max-w-xl mx-auto">
                 <Component {...pageProps} />
             </div>
-<!--             <Script
+            {/* <Script
                 src="https://developers.kakao.com/sdk/js/kakao.js"
                 strategy="lazyOnload"
-            />
-            <Script
+            /> */}
+            {/* <Script
                 src="https://connect.facebook.net/en_US/sdk.js"
                 onLoad={() => {
                     console.log("onload script");
                 }}
-            /> -->
+            /> */}
             {/* strategy 3종류
              * beforeInteractive - 페이지를 다 불러와서 상호작용 전 스크립트를 불러오는 전략
              * afterInteractive - 페이지를 먼저 다불러온 다음에 스크립트를 불러온다
