@@ -29,8 +29,8 @@ async function handler(
         // https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#on-demand-revalidation-beta
         // 사용자의 요청에 의해 의도적으로 화면에 대한 재생성(빌드)를 유발 시켜 캐시를 무효화하고 새로운 데이터로 그려진 정적요소를
         // 만들어 api를 요청하지 않았음에도 화면을 갱신할 수 있다.
-        await res.unstable_revalidate('/community');
-        res.json({
+        // await res.unstable_revalidate('/community');
+        return res.json({
             ok: true,
             post,
         });
@@ -70,7 +70,7 @@ async function handler(
                 },
             },
         });
-        res.json({
+        return res.json({
             ok: true,
             posts,
         });
