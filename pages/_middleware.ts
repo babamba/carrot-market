@@ -8,13 +8,14 @@ export default function middleware(req: NextRequest, ev: NextFetchEvent) {
         });
     }
 
-    if (
-        !req.url.includes('/api') &&
-        !req.url.includes('/confirm') &&
-        !req.url.includes('/enter') &&
-        !req.cookies.carrotsession
-    ) {
-        return NextResponse.redirect(`${req.nextUrl.origin}/enter`);
+    if (!req.url.includes('/api')) {
+        if (
+            !req.url.includes('/confirm') &&
+            !req.url.includes('/enter') &&
+            !req.cookies.carrotsession
+        ) {
+            return NextResponse.redirect(new URL('/enter', req.url));
+        }
     }
 
     //return NextResponse.json({ ok: true });
