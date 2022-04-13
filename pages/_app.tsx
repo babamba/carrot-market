@@ -1,13 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { SWRConfig } from "swr";
-import useUser from "@libs/client/useUser";
 import Script from "next/script";
-
-function CustomUser() {
-    const { user } = useUser();
-    return null;
-}
 
 // _app 는 클라이언트에서 라우팅에 따른 page 컴포넌트를 렌더링 할떄마다 호출됨.
 function MyApp({ Component, pageProps }: AppProps) {
@@ -20,10 +14,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             }}
         >
             <div className="w-full max-w-xl mx-auto">
-                <CustomUser />
                 <Component {...pageProps} />
             </div>
-            <Script
+<!--             <Script
                 src="https://developers.kakao.com/sdk/js/kakao.js"
                 strategy="lazyOnload"
             />
@@ -32,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 onLoad={() => {
                     console.log("onload script");
                 }}
-            />
+            /> -->
             {/* strategy 3종류
              * beforeInteractive - 페이지를 다 불러와서 상호작용 전 스크립트를 불러오는 전략
              * afterInteractive - 페이지를 먼저 다불러온 다음에 스크립트를 불러온다
