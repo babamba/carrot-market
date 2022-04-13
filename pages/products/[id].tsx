@@ -14,6 +14,11 @@ interface ProductWithUser extends Product {
     user: User;
 }
 
+interface IsLikedByProduct {
+    ok: boolean;
+    isLiked: boolean;
+}
+
 interface ItemDetailResponse {
     ok: boolean;
     product: ProductWithUser;
@@ -30,6 +35,10 @@ const ItemDetail: NextPage<ItemDetailResponse> = ({
     const { user, isLoading } = useUser();
     const router = useRouter();
     const { mutate } = useSWRConfig();
+    const { data: isLikedProduct, mutate: boundIsLikedMutate } =
+    useSWR<IsLikedByProduct>(
+        router.query.id ? `/api/products/${router.query.id}/liked` : null
+    );
     const { data, mutate: boundMutate } = useSWR<ItemDetailResponse>(
         router.query.id ? `/api/products/${router.query.id}` : null
     );
@@ -37,7 +46,11 @@ const ItemDetail: NextPage<ItemDetailResponse> = ({
     const onFavClick = () => {
         if (!data) return;
         // boundMutate({ ...data, isLiked: !data.isLiked }, false);
-        boundMutate(
+//         boundMutate(
+//             (prev) => prev && { ...prev, isLiked: !prev.isLiked },
+//             false
+//         );
+        boundIsLikedMutate(
             (prev) => prev && { ...prev, isLiked: !prev.isLiked },
             false
         );
@@ -95,12 +108,12 @@ const ItemDetail: NextPage<ItemDetailResponse> = ({
                                 onClick={onFavClick}
                                 className={cls(
                                     'p-3 rounded-md flex items-center justify-center',
-                                    isLiked
+                                    isLikedProduct?.isLiked
                                         ? 'text-red-500 hover:text-red-600'
                                         : 'text-gray-400 hover:text-gray-500'
                                 )}
                             >
-                                {isLiked ? (
+                                {isLikedProduct?.isLiked ? (
                                     <svg
                                         className="w-6 h-6"
                                         fill="currentColor"
@@ -245,7 +258,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     });
 
     const isLiked = false;
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
     // const isLiked = Boolean(
     //     await client.fav.findFirst({
     //         where: {
