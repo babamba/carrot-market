@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             }}
         >
             <div className="w-full max-w-xl mx-auto">
-                <NextNProgress />
+                <NextNProgress color="#ffac2e" />
                 <Component {...pageProps} />
             </div>
             {/* <Script
