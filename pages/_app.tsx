@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import Script from "next/script";
+import NextNProgress from 'nextjs-progressbar';
 
 // _app 는 클라이언트에서 라우팅에 따른 page 컴포넌트를 렌더링 할떄마다 호출됨.
 function MyApp({ Component, pageProps }: AppProps) {
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             }}
         >
             <div className="w-full max-w-xl mx-auto">
+                <NextNProgress />
                 <Component {...pageProps} />
             </div>
             {/* <Script
